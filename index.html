@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>Postal de Año Nuevo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <style>
     body {
       margin: 0;
@@ -16,19 +17,23 @@
       overflow: hidden;
     }
 
+    /* Challa */
     .challa span {
       position: absolute;
       top: -10px;
       width: 6px;
-      height: 12px;
-      background: rgba(255, 182, 213, 0.9);
+      height: 14px;
+      background: rgba(255, 200, 220, 0.9);
       animation: caer linear infinite;
     }
 
     @keyframes caer {
-      to { transform: translateY(110vh) rotate(360deg); }
+      to {
+        transform: translateY(110vh) rotate(360deg);
+      }
     }
 
+    /* Sobre */
     .sobre {
       width: 280px;
       height: 180px;
@@ -41,9 +46,11 @@
       z-index: 2;
     }
 
-    .sobre:hover { transform: scale(1.03); }
+    .sobre:hover {
+      transform: scale(1.03);
+    }
 
-    .sobre:before {
+    .sobre::before {
       content: "";
       position: absolute;
       top: 0;
@@ -51,7 +58,7 @@
       width: 100%;
       height: 100%;
       background: linear-gradient(135deg, transparent 50%, #b13b69 50%);
-      clip-path: polygon(0 0, 100% 0, 50% 50%);
+      clip-path: polygon(0 0, 100% 0, 50% 55%);
     }
 
     .texto-sobre {
@@ -64,6 +71,7 @@
       letter-spacing: .5px;
     }
 
+    /* Carta */
     .carta {
       position: absolute;
       width: 260px;
@@ -87,74 +95,109 @@
     h1 {
       margin-top: 0;
       color: #8a2f5c;
+      font-size: 22px;
     }
 
-    p { color: #444; }
+    p {
+      color: #444;
+      font-size: 14px;
+    }
 
+    /* Botones */
     .btn {
-      display: inline-block;
-      margin-top: 16px;
-      padding: 12px 20px;
+      display: block;
+      margin-top: 10px;
+      padding: 12px;
       background: #25d366;
       color: #fff;
       text-decoration: none;
       border-radius: 30px;
       font-weight: 600;
+      font-size: 14px;
     }
 
-    .musica {
-      margin-top: 14px;
-      font-size: 13px;
-      color: #666;
-    }
-
-    audio { width: 100%; margin-top: 6px; }
+    .btn.alt1 { background: #8a2f5c; }
+    .btn.alt2 { background: #128C7E; }
+    .btn.alt3 { background: #6A1B9A; }
+    .btn.alt4 { background: #555; }
   </style>
 </head>
+
 <body>
 
-<div class="challa" id="challa"></div>
+  <!-- Challa -->
+  <div class="challa" id="challa"></div>
 
-<div class="sobre" id="sobre">
-  <div class="texto-sobre">Haz clic para abrir 💌</div>
-</div>
+  <!-- Sobre -->
+  <div class="sobre" id="sobre">
+    <div class="texto-sobre">Haz clic para abrir 💌</div>
+  </div>
 
-<div class="carta" id="carta">
-  <h1 id="titulo">Feliz Año Nuevo</h1>
-  <p>Que este año venga con risas, salud y momentos que valgan la pena guardar 🤍</p>
+  <!-- Carta -->
+  <div class="carta" id="carta">
+    <h1 id="titulo">Feliz Año Nuevo</h1>
+    <p>
+      Que este año venga con salud, calma y momentos que realmente valgan la pena 🤍
+    </p>
 
-  <a class="btn" href="https://wa.me/?text=Gracias%20por%20la%20postal%20💖" target="_blank">Me encantó 💖</a>
+    <a class="btn" 
+       href="https://wa.me/?text=Me%20llegó%20al%20corazón%20💖" 
+       target="_blank">
+       💖 Me llegó al corazón
+    </a>
 
-  <a class="btn" style="background:#128C7E" href="https://wa.me/?text=Feliz%20año%20para%20ti%20también%20✨" target="_blank">Feliz año ✨</a>
+    <a class="btn alt1" 
+       href="https://wa.me/?text=Que%20sea%20un%20gran%20año%20✨" 
+       target="_blank">
+       ✨ Que sea un gran año
+    </a>
 
-  <a class="btn" style="background:#6A1B9A" href="https://wa.me/?text=Gracias%2C%20abrazo%20grande%20🤍" target="_blank">Abrazo 🤍</a>
+    <a class="btn alt2" 
+       href="https://wa.me/?text=Te%20mando%20un%20abrazo%20🤍" 
+       target="_blank">
+       🤍 Te mando un abrazo
+    </a>
 
-  
-</div>
+    <a class="btn alt3" 
+       href="https://wa.me/?text=Me%20sacaste%20una%20sonrisa%20😌" 
+       target="_blank">
+       😌 Me sacaste una sonrisa
+    </a>
 
-<script>
-  const params = new URLSearchParams(window.location.search);
-  const nombre = params.get('nombre');
-  if (nombre) {
-    document.getElementById('titulo').innerText = `Feliz Año Nuevo, ${nombre}`;
-  }
+    <a class="btn alt4" 
+       href="https://wa.me/?text=Gracias%20por%20pensar%20en%20mí%20🤍" 
+       target="_blank">
+       🤍 Gracias por pensar en mí
+    </a>
+  </div>
 
-  const sobre = document.getElementById('sobre');
-  const carta = document.getElementById('carta');
+  <script>
+    // Personalización por nombre
+    const params = new URLSearchParams(window.location.search);
+    const nombre = params.get("nombre");
+    if (nombre) {
+      document.getElementById("titulo").innerText =
+        "Feliz Año Nuevo, " + nombre;
+    }
 
-  sobre.addEventListener('click', () => {
-    carta.classList.add('activa');
-  });
+    // Abrir carta
+    const sobre = document.getElementById("sobre");
+    const carta = document.getElementById("carta");
 
-  const challa = document.getElementById('challa');
-  for (let i = 0; i < 50; i++) {
-    const s = document.createElement('span');
-    s.style.left = Math.random() * 100 + 'vw';
-    s.style.animationDuration = 3 + Math.random() * 4 + 's';
-    s.style.opacity = Math.random();
-    challa.appendChild(s);
-  }
-</script>
+    sobre.addEventListener("click", () => {
+      carta.classList.add("activa");
+    });
+
+    // Generar challa
+    const challa = document.getElementById("challa");
+    for (let i = 0; i < 50; i++) {
+      const s = document.createElement("span");
+      s.style.left = Math.random() * 100 + "vw";
+      s.style.animationDuration = 3 + Math.random() * 4 + "s";
+      s.style.opacity = Math.random();
+      challa.appendChild(s);
+    }
+  </script>
 
 </body>
 </html>
