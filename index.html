@@ -1,155 +1,164 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Para ti 🤍</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta charset="UTF-8" />
+  <title>Postal de Año Nuevo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
       margin: 0;
-      font-family: 'Georgia', serif;
-      background: linear-gradient(180deg, #f6e1e7, #ffffff);
-      overflow: hidden;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at top, #8a2f5c, #4b102b);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      overflow: hidden;
     }
 
-    .card {
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 34px 30px;
-      max-width: 420px;
-      text-align: center;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+    .challa span {
+      position: absolute;
+      top: -10px;
+      width: 6px;
+      height: 12px;
+      background: rgba(255, 182, 213, 0.9);
+      animation: caer linear infinite;
+    }
+
+    @keyframes caer {
+      to { transform: translateY(110vh) rotate(360deg); }
+    }
+
+    .sobre {
+      width: 280px;
+      height: 180px;
+      background: #c24b7a;
+      border-radius: 6px;
       position: relative;
+      cursor: pointer;
+      box-shadow: 0 20px 40px rgba(0,0,0,.35);
+      transition: transform .4s ease;
       z-index: 2;
+    }
+
+    .sobre:hover { transform: scale(1.03); }
+
+    .sobre:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, transparent 50%, #b13b69 50%);
+      clip-path: polygon(0 0, 100% 0, 50% 50%);
+    }
+
+    .texto-sobre {
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: .5px;
+    }
+
+    .carta {
+      position: absolute;
+      width: 260px;
+      padding: 24px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 25px 50px rgba(0,0,0,.4);
+      transform: translateY(40px) scale(.9);
+      opacity: 0;
+      transition: all .6s ease;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .carta.activa {
+      transform: translateY(-160px) scale(1);
+      opacity: 1;
+      z-index: 3;
     }
 
     h1 {
       margin-top: 0;
-      font-size: 24px;
+      color: #8a2f5c;
     }
 
-    p {
-      color: #555;
-      font-size: 15px;
-      line-height: 1.6;
-    }
+    p { color: #444; }
 
-    .buttons {
-      margin-top: 26px;
-    }
-
-    a.button {
-      display: block;
-      margin: 12px 0;
-      padding: 13px;
-      border-radius: 14px;
-      background: #e8b4bc;
-      color: #000;
+    .btn {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 12px 20px;
+      background: #25d366;
+      color: #fff;
       text-decoration: none;
-      font-weight: bold;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border-radius: 30px;
+      font-weight: 600;
     }
 
-    a.button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    }
-
-    /* Nieve */
-    .snowflake {
-      position: fixed;
-      top: -10px;
-      color: #ffffff;
-      font-size: 1em;
-      user-select: none;
-      pointer-events: none;
-      animation-name: fall;
-      animation-timing-function: linear;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(110vh);
-      }
-    }
-
-    .music {
-      position: fixed;
-      bottom: 16px;
-      right: 16px;
-      background: #ffffff;
-      border-radius: 50px;
-      padding: 8px 14px;
+    .musica {
+      margin-top: 14px;
       font-size: 13px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      cursor: pointer;
-      z-index: 3;
+      color: #666;
     }
+
+    audio { width: 100%; margin-top: 6px; }
   </style>
 </head>
-
 <body>
 
-  <div class="card">
-    <h1>✨ Feliz Año Nuevo ✨</h1>
+<div class="challa" id="challa"></div>
 
-    <p>
-      Que este nuevo año nos encuentre con más calma,
-      más risas compartidas y las personas correctas cerca.
-    </p>
+<div class="sobre" id="sobre">
+  <div class="texto-sobre">Haz clic para abrir 💌</div>
+</div>
 
-    <p>
-      Gracias por estar y por seguir caminando conmigo.
-    </p>
+<div class="carta" id="carta">
+  <h1 id="titulo">Feliz Año Nuevo</h1>
+  <p>Que este año venga con risas, salud y momentos que valgan la pena guardar 🤍</p>
 
-    <p><strong>Salín 🤍</strong></p>
+  <a class="btn" href="https://wa.me/?text=Gracias%20por%20la%20postal%20💖" target="_blank">
+    Responder por WhatsApp
+  </a>
 
-    <div class="buttons">
-      <a class="button" href="https://wa.me/?text=Te%20quiero%20mucho%20🤍" target="_blank">🤍 Te quiero</a>
-      <a class="button" href="https://wa.me/?text=Gracias%20por%20la%20tarjeta%20✨" target="_blank">💌 Escribirme</a>
-      <a class="button" href="https://wa.me/?text=Seguimos%20juntos%20este%20año%20✨" target="_blank">✨ Seguimos juntos</a>
-    </div>
+  <div class="musica">
+    🎵 Música personalizada (sube tu archivo .mp3 aquí)
+    <audio controls>
+      <source src="musica.mp3" type="audio/mpeg">
+      Tu navegador no soporta audio.
+    </audio>
   </div>
+</div>
 
-  <div class="music" onclick="toggleMusic()">🎵 Música</div>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const nombre = params.get('nombre');
+  if (nombre) {
+    document.getElementById('titulo').innerText = `Feliz Año Nuevo, ${nombre}`;
+  }
 
-  <audio id="bgm" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/10/16/audio_2b8d8bcd94.mp3" type="audio/mpeg">
-  </audio>
+  const sobre = document.getElementById('sobre');
+  const carta = document.getElementById('carta');
 
-  <script>
-    // Nieve
-    const snowflakes = 40;
-    for (let i = 0; i < snowflakes; i++) {
-      const snow = document.createElement('div');
-      snow.className = 'snowflake';
-      snow.innerHTML = '❄';
-      snow.style.left = Math.random() * 100 + 'vw';
-      snow.style.animationDuration = (Math.random() * 5 + 5) + 's';
-      snow.style.opacity = Math.random();
-      snow.style.fontSize = (Math.random() * 10 + 10) + 'px';
-      document.body.appendChild(snow);
-    }
+  sobre.addEventListener('click', () => {
+    carta.classList.add('activa');
+  });
 
-    // Música
-    const music = document.getElementById('bgm');
-    let playing = false;
-
-    function toggleMusic() {
-      if (!playing) {
-        music.play();
-        playing = true;
-      } else {
-        music.pause();
-        playing = false;
-      }
-    }
-  </script>
+  const challa = document.getElementById('challa');
+  for (let i = 0; i < 50; i++) {
+    const s = document.createElement('span');
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.animationDuration = 3 + Math.random() * 4 + 's';
+    s.style.opacity = Math.random();
+    challa.appendChild(s);
+  }
+</script>
 
 </body>
 </html>
