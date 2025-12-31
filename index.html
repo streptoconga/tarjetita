@@ -1,112 +1,155 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Tarjeta Año Nuevo</title>
+  <meta charset="UTF-8">
+  <title>Para ti 🤍</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(180deg, #f6e1e7, #ffffff);
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 34px 30px;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 24px;
+    }
+
+    p {
+      color: #555;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .buttons {
+      margin-top: 26px;
+    }
+
+    a.button {
+      display: block;
+      margin: 12px 0;
+      padding: 13px;
+      border-radius: 14px;
+      background: #e8b4bc;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    a.button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+
+    /* Nieve */
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      color: #ffffff;
+      font-size: 1em;
+      user-select: none;
+      pointer-events: none;
+      animation-name: fall;
+      animation-timing-function: linear;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+      }
+    }
+
+    .music {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      background: #ffffff;
+      border-radius: 50px;
+      padding: 8px 14px;
+      font-size: 13px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      cursor: pointer;
+      z-index: 3;
+    }
+  </style>
 </head>
 
-<body style="margin:0; padding:0; background:#f2f2f2; font-family:'Arial', sans-serif;">
+<body>
 
-<table width="100%" cellpadding="0" cellspacing="0">
-<tr>
-<td align="center" style="padding:30px;">
+  <div class="card">
+    <h1>✨ Feliz Año Nuevo ✨</h1>
 
-<table width="420" cellpadding="0" cellspacing="0" style="
-background:#ffffff;
-border-radius:18px;
-padding:30px;
-box-shadow:0 10px 30px rgba(0,0,0,0.1);
-text-align:center;
-">
+    <p>
+      Que este nuevo año nos encuentre con más calma,
+      más risas compartidas y las personas correctas cerca.
+    </p>
 
-<tr>
-<td>
-<h1 style="margin:0; font-size:24px;">✨ Feliz Año Nuevo ✨</h1>
-<p style="font-size:15px; color:#555; margin-top:15px;">
-Si estás aquí, es porque sigues siendo parte de mi vida 🤍  
-y eso ya es un regalo enorme.
-</p>
-</td>
-</tr>
+    <p>
+      Gracias por estar y por seguir caminando conmigo.
+    </p>
 
-<tr>
-<td style="padding:20px 0;">
-<p style="font-size:14px; color:#777;">
-Elige lo que quieras llevarte este año conmigo:
-</p>
-</td>
-</tr>
+    <p><strong>Salín 🤍</strong></p>
 
-<tr>
-<td>
+    <div class="buttons">
+      <a class="button" href="https://wa.me/?text=Te%20quiero%20mucho%20🤍" target="_blank">🤍 Te quiero</a>
+      <a class="button" href="https://wa.me/?text=Gracias%20por%20la%20tarjeta%20✨" target="_blank">💌 Escribirme</a>
+      <a class="button" href="https://wa.me/?text=Seguimos%20juntos%20este%20año%20✨" target="_blank">✨ Seguimos juntos</a>
+    </div>
+  </div>
 
-<a href="mailto:?subject=Este año quiero más abrazos 🤍"
-style="
-display:block;
-margin:10px auto;
-padding:12px;
-width:80%;
-background:#ffe5ec;
-color:#000;
-text-decoration:none;
-border-radius:12px;
-font-weight:bold;
-">
-🤍 Más abrazos
-</a>
+  <div class="music" onclick="toggleMusic()">🎵 Música</div>
 
-<a href="mailto:?subject=Este año quiero reír contigo 😄"
-style="
-display:block;
-margin:10px auto;
-padding:12px;
-width:80%;
-background:#e0fbfc;
-color:#000;
-text-decoration:none;
-border-radius:12px;
-font-weight:bold;
-">
-😄 Más risas
-</a>
+  <audio id="bgm" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/10/16/audio_2b8d8bcd94.mp3" type="audio/mpeg">
+  </audio>
 
-<a href="mailto:?subject=Este año seguimos juntos ✨"
-style="
-display:block;
-margin:10px auto;
-padding:12px;
-width:80%;
-background:#ede7ff;
-color:#000;
-text-decoration:none;
-border-radius:12px;
-font-weight:bold;
-">
-✨ Seguir juntos
-</a>
+  <script>
+    // Nieve
+    const snowflakes = 40;
+    for (let i = 0; i < snowflakes; i++) {
+      const snow = document.createElement('div');
+      snow.className = 'snowflake';
+      snow.innerHTML = '❄';
+      snow.style.left = Math.random() * 100 + 'vw';
+      snow.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      snow.style.opacity = Math.random();
+      snow.style.fontSize = (Math.random() * 10 + 10) + 'px';
+      document.body.appendChild(snow);
+    }
 
-</td>
-</tr>
+    // Música
+    const music = document.getElementById('bgm');
+    let playing = false;
 
-<tr>
-<td style="padding-top:25px;">
-<p style="font-size:14px; color:#555;">
-Gracias por estar, por quedarte  
-y por hacer mis días más llevaderos.
-</p>
-
-<p style="margin-top:20px; font-weight:bold;">
-Con cariño infinito,<br>
-Salín 🤍
-</p>
-</td>
-</tr>
-
-</table>
-
-</td>
-</tr>
-</table>
+    function toggleMusic() {
+      if (!playing) {
+        music.play();
+        playing = true;
+      } else {
+        music.pause();
+        playing = false;
+      }
+    }
+  </script>
 
 </body>
 </html>
